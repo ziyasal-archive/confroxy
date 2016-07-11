@@ -4,10 +4,12 @@
 ## Create Dockerfile for your service
 
 *Tools*
- - Gliderlabs Consul / server
- - Gliderlabs Registrator
+ - [Gliderlabs Consul / server](https://github.com/gliderlabs/docker-consul)
+ - [Gliderlabs Registrator](https://github.com/gliderlabs/registrator)
  - Hashicorp Consul Template or Confd tool
- - ziyasal confroxy image that contains nginx and consul template 
+    - [Consul Template](https://github.com/hashicorp/consul-template)
+    - [Confd](https://github.com/kelseyhightower/confd)
+ - ziyasal [confroxy](https://github.com/ziyasal/confroxy) image that contains nginx and consul template 
  - 
  
 _Other Alternative_  
