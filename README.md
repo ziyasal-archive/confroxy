@@ -1,28 +1,19 @@
-## Create Dockerfile for your service
+# confroxy
+5 Elements: Docker, Registrator, Consul, Consul Template, Nginx
 
+## Create Dockerfile for your service
 
 *Tools*
  - Gliderlabs Consul / server
- - Cliderlabs Registrator
+ - Gliderlabs Registrator
  - Hashicorp Consul Template or Confd tool
- - ziyasal simplex image that contains nginx and consul template 
- - Your service
+ - ziyasal confroxy image that contains nginx and consul template 
+ - 
 
 _1. Alternative_
-The another way to do that listen docker events manually 
-and register or deregister services?containers from consul then update your proxy tool such as node-proxy
+Another way to do that listen docker events manually (for example: [node-docker-monitor](https://github.com/Beh01der/node-docker-monitor))
+and register or deregister services from consul then update your proxy tool (for example: [node-http-proxy](https://github.com/nodejitsu/node-http-proxy))
 
-
-_build your image_
-
-```sh
-docker build -t simplex/server .
-```
-
-_start your server_
-```sh
-docker run -it  -p 8000:80 simplex/server
-```
 
 _run consul_
 
@@ -37,8 +28,7 @@ docker run -it -h node \
  -log-level debug
 ```
 
-
-_install  registrator_
+_run registrator_
 
 ```sh
 docker run -d \
@@ -53,33 +43,18 @@ docker run -d \
 _run consul template and nginx service_
 
 ```sh
-docker run -it  --net=host -e "CONSUL=127.0.0.1:8500" -e "SERVICE=simple" -p 80:80 confroxy
+docker run -it  --net=host -e "CONSUL=127.0.0.1:8500" -e "SERVICE=trex-svc" -p 80:80 confroxy
 ```
 
+_build your service image_
+
+```sh
+docker build -t trex/server .
+```
 _run your service_
 
 ```sh
-docker run -it -e "SERVICE_NAME=simple" -p 8000:80 simplex/server
-
-docker run -it -e "SERVICE_NAME=simple" -p 8001:80 simplex/server
+docker run -it -e "SERVICE_NAME=trex-svc" -p 8000:80 trex/server
+docker run -it -e "SERVICE_NAME=trex-svc" -p 8001:80 trex/server
+docker run -it -e "SERVICE_NAME=trex-svc" -p 8001:80 trex/server
 ```
-
-
-
-
-
-
-
-_register service to consul (manually demo)_
-
-```sh
-curl -XPUT \
-127.0.0.1:8500/v1/agent/service/register \
--d '{
- "ID": "simple_instance_1",
- "Name":"simple",
- "Port": 8000, 
- "tags": ["tag"]
-}'
-```
-
