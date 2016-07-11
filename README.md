@@ -58,7 +58,7 @@ docker build -t trex/server .
 _Docker scale will do that (:_ 
 
 ```sh
-docker run -it -e "SERVICE_NAME=trex-svc" -p 8000:80 trex/server
-docker run -it -e "SERVICE_NAME=trex-svc" -p 8001:80 trex/server
-docker run -it -e "SERVICE_NAME=trex-svc" -p 8001:80 trex/server
+docker run -it -e "SERVICE=trex-svc" -p 8000:80 trex/server
+docker run -it -e "SERVICE=trex-svc" -p 8001:80 trex/server
+docker run -it -e "SERVICE=trex-svc" -p 8001:80 trex/server
 ```
