@@ -1,5 +1,5 @@
 # confroxy
-5 Elements: Docker, Registrator, Consul, Consul Template, Nginx
+5 Elements:  Docker, Registrator, Consul, Consul Template, Nginx
 
 ## Create Dockerfile for your service
 
@@ -9,13 +9,13 @@
  - Hashicorp Consul Template or Confd tool
  - ziyasal confroxy image that contains nginx and consul template 
  - 
-
-_1. Alternative_
+ 
+_Other Alternative_  
 Another way to do that listen docker events manually (for example: [node-docker-monitor](https://github.com/Beh01der/node-docker-monitor))
 and register or deregister services from consul then update your proxy tool (for example: [node-http-proxy](https://github.com/nodejitsu/node-http-proxy))
 
 
-_run consul_
+#### run consul
 
 ```sh
 docker run -it -h node \
@@ -28,7 +28,7 @@ docker run -it -h node \
  -log-level debug
 ```
 
-_run registrator_
+####  run registrator
 
 ```sh
 docker run -d \
@@ -40,18 +40,20 @@ docker run -d \
 
 ```
 
-_run consul template and nginx service_
+####  run confroxy (preconfigured _consul template_ and _nginx_ service)
 
 ```sh
 docker run -it  --net=host -e "CONSUL=127.0.0.1:8500" -e "SERVICE=trex-svc" -p 80:80 confroxy
 ```
 
-_build your service image_
+####  build your service image
 
 ```sh
 docker build -t trex/server .
 ```
-_run your service_
+####  run your service instances
+
+_Docker scale will do that (:_ 
 
 ```sh
 docker run -it -e "SERVICE_NAME=trex-svc" -p 8000:80 trex/server
