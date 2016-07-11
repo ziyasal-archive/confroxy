@@ -55,9 +55,9 @@ docker build -t trex/server .
 ```
 ####  run your service instances
 
-`docker service scale trex=3` will do that if youl like to try new stuff (:
+`docker service scale trex=3` will do that if you like to try new stuff (:
 
-_stating service manually_
+_stating services manually_
 ```sh
 docker run -it -e "SERVICE=trex-svc" -p 8000:80 trex/server
 docker run -it -e "SERVICE=trex-svc" -p 8001:80 trex/server
