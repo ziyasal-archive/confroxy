@@ -5,8 +5,8 @@ FROM nginx:latest
 RUN apt-get update -qq && apt-get -y install curl && apt-get install unzip
 
 #Install Consul Template (v0.15.0)
-RUN curl -sS https://releases.hashicorp.com/consul-template/0.15.0/consul-template_0.15.0_linux_amd64.zip > consul.zip
-RUN unzip consul.zip -d /usr/local/bin
+RUN curl -sS https://releases.hashicorp.com/consul-template/0.15.0/consul-template_0.15.0_linux_amd64.zip > consul-template.zip
+RUN unzip consul-template.zip -d /usr/local/bin
 
 #Setup Consul Template Files
 RUN mkdir /etc/consul-templates
